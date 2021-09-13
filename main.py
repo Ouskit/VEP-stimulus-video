@@ -1,22 +1,25 @@
 import cv2
 import os
-import random
 
-img = cv2.imread('./images/1.png')
+img = cv2.imread('./images/black-white/0.png') # Gain size
+
 fps = 28
+
 size = (img.shape[1],img.shape[0])
-print(size)
+
 fourcc = cv2.VideoWriter_fourcc(*'MJPG')
-videoWrite = cv2.VideoWriter('./new_2.avi',fourcc,fps,size)
 
-files = os.listdir('./images')
+videoWrite = cv2.VideoWriter('./output/14Hz Black White.avi',fourcc,fps,size)
 
-print(files)
+path = './images/black-white/'
+
+files = os.listdir(path)
+
 out_num = len(files)
 
 for _ in range(420):
     for i in files:
-        fileName = "./images/"+ i
+        fileName = path + i
         img = cv2.imread(fileName)
         videoWrite.write(img)
 videoWrite.release()
